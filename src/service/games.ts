@@ -1,6 +1,6 @@
 import BaseService from "base/service";
-import { judgeAccessToke } from "../utils";
-import { PagingBaseParams } from "../models/base";
+import { judgeAccessToke } from "utils/index";
+import { PagingBaseParams } from "models/base";
 
 export class GamesService extends BaseService {
     access_token: string;

@@ -9,11 +9,9 @@
       "es6",
       "es7"
     ],
-    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -24,7 +22,9 @@
     "baseUrl": "src",
     "preserveConstEnums": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization":false
+    "allowJs": true,
+    "strictPropertyInitialization": false,
+    "strict": true
   },
   "include": [
     "src/*"

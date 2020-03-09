@@ -1,4 +1,4 @@
 export interface PagingBaseParams {
-    page?: number,
-    pageSize?: number
+    page: number,
+    pageSize: number
 }

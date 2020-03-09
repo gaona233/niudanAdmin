@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LayOutComp from "pages/main/App";
 import { router } from "config/path";
 import { Provider } from 'mobx-react';
+import * as store from '../store';
 export default class PageRouter extends React.Component<any> {
     render() {
         return (
-            <Provider>
+            <Provider {...store}>
                 <Router>
                     <LayOutComp>
                         {router.map(res => (

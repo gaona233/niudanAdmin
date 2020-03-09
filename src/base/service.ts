@@ -36,7 +36,7 @@ export default class BaseService {
   private static handleResponse(response: AxiosResponse) {
     let responseData: any = response.data;
     if (responseData.code == -99) {
-      throw new  Error(responseData.message)
+      throw new Error(responseData.message)
     }
 
     return {
@@ -59,7 +59,7 @@ export default class BaseService {
 
   checkLemonServiceError(responseData: ResponseData) {
     if (responseData.code !== 0) {
-      throw new  Error('has no data')
+      throw new Error('has no data')
     }
   }
 
@@ -73,8 +73,7 @@ export default class BaseService {
         return response;
       },
       error => {
-        if (error.response && error.response.status === 401) {
-          window.location.href = "/login";
+        if (error.response && error.response.status === 40001) {
           return message.error(
             "抱歉，您未登录或者登录状态已过期，即将为您跳转到登录页面"
           );
