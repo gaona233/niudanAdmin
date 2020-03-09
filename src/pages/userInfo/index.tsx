@@ -37,8 +37,8 @@ export default class UserInfo extends React.Component {
             dataIndex: 'Gender',
             render: (text: number) => text == 2 ? '女' : "男"
         }, {
-            title: 'id',
-            dataIndex: '_id',
+            title: 'openId',
+            dataIndex: 'openId',
         }, {
             title: '创建时间',
             dataIndex: 'CreateTime',
