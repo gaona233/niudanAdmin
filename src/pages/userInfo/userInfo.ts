@@ -18,7 +18,9 @@ class UserInfoStore {
     async getUserInfo() {
         const { data, total } = await this.userService.getUserInfo({ ...this.condition });
         const dataNew = data.map((res: any) => {
-            return (new Function("return " + res))();
+            const source = (new Function("return " + res))();
+            source.key = source['_id'];
+            return source
         })
         this.userInfoList = [...dataNew];
         this.total = total;

@@ -4,9 +4,10 @@ import { inject, observer } from 'mobx-react';
 import { Table } from 'antd';
 import moment from 'moment';
 import { toJS } from 'mobx';
+import { withRouter } from 'react-router';
 @inject('user')
 @observer
-export default class UserInfo extends React.Component {
+class UserInfo extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
     }
@@ -18,6 +19,7 @@ export default class UserInfo extends React.Component {
         {
             title: '头像',
             dataIndex: 'AvatarUrl',
+            key: 'AvatarUrl',
             render: (text: string) => (
                 <img src={text} />
             )
@@ -25,20 +27,24 @@ export default class UserInfo extends React.Component {
         {
             title: '昵称',
             dataIndex: 'NickName',
+            key: 'NickName',
         },
         {
             title: '城市',
             dataIndex: 'City',
+            key: 'City',
             render: (text: string, record: any) => (
                 <span>{record.Province}--{text}</span>
             )
         }, {
             title: '性别',
             dataIndex: 'Gender',
+            key: 'Gender',
             render: (text: number) => text == 2 ? '女' : "男"
         }, {
             title: 'openId',
             dataIndex: 'openId',
+            key: 'openId',
         }, {
             title: '创建时间',
             dataIndex: 'CreateTime',
@@ -76,5 +82,5 @@ export default class UserInfo extends React.Component {
     }
 }
 
-
+export default withRouter(UserInfo)
 

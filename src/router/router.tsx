@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LayOutComp from "pages/main/App";
 import { router } from "config/path";
 import { Provider } from 'mobx-react';
@@ -9,11 +9,13 @@ export default class PageRouter extends React.Component<any> {
         return (
             <Provider {...store}>
                 <Router>
-                    <LayOutComp>
-                        {router.map(res => (
-                            <Route key={res.path} path={res.path} component={res.conponemt} />
-                        ))}
-                    </LayOutComp>
+                    <Switch>
+                        <LayOutComp>
+                            {router.map(res => (
+                                <Route key={res.path} path={res.path} component={res.conponemt} />
+                            ))}
+                        </LayOutComp>
+                    </Switch>
                 </Router>
             </Provider>
         );
