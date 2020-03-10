@@ -5,7 +5,7 @@ import { toJS, observable } from 'mobx';
 import { Table, Button, Divider } from 'antd';
 import { observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import styles from '../index.less';
+import styles from '../index.module.less';
 @observer
 
 class GamesInfo extends React.Component<any, any> {
