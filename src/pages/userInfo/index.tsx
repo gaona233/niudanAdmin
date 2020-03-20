@@ -75,6 +75,8 @@ class UserInfo extends React.Component<any, any> {
                         pageSize: pageSize || 10,
                         page: current || 0
                     }
+                    userInfoStore.getUserInfo();
+
                 }}
             />
 

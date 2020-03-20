@@ -1,25 +1,35 @@
 import GamesInfo from "pages/gamesInfo/list";
-import GamesInfoDetail from "pages/gamesInfo/detail";
+import GamesDetailList from "pages/gamesInfo/detailList";
 import UserInfo from "pages/userInfo";
-import IndexComp from "pages/home";
+import ListChange from 'pages/gamesInfo/listChange'
+import DetailListChange from 'pages/gamesInfo/detailListChange'
+import GamesCategory from 'pages/gamesCategory';
 
-export const gamesInfo = '/gamesInfo';
-export const gamesDetails = `${gamesInfo}/:id'`;
+export const gamesIntro = '/gamesIntro';
+export const gamesDetailList = '/gamesDetailList';
 export const gameContro = '/gameContro';
 export const gameControDetail = '/gameControDetail/:id';
 export const userInfoList = '/userInfo';
-export const index = '/'
+export const listChange = '/listChange';
+export const detailListChange = '/detailListChange'
+export const gamesCategory = '/gamesCategory';
 
 export const router = [{
-    path: gamesInfo,
-    conponemt: GamesInfo,
-}, {
-    path: gamesDetails,
-    conponemt: GamesInfoDetail,
-}, {
     path: userInfoList,
     conponemt: UserInfo
+},{
+    path: listChange,
+    conponemt: ListChange
 }, {
-    path: index,
-    conponemt: IndexComp
+    path: gamesDetailList,
+    conponemt: GamesDetailList
+}, {
+    path: gamesIntro,
+    conponemt: GamesInfo,
+}, {
+    path: detailListChange,
+    conponemt: DetailListChange,
+}, {
+    path: gamesCategory,
+    conponemt: GamesCategory,
 }]

@@ -1,13 +1,15 @@
 import React from 'react';
-import { gamesStore } from '../store'
+import { gamesStore } from './store'
 import moment from 'moment';
 import { toJS, observable } from 'mobx';
-import { Table, Button, Divider } from 'antd';
+import { Table, Button, Divider, Card } from 'antd';
 import { observer } from 'mobx-react';
-import { withRouter } from 'react-router-dom';
-import styles from '../index.module.less';
-@observer
+import styles from '../index.module.css';
+import { commonStore } from '../store'
+import { judgeIsFromCloud } from 'utils';
+import { withRouter } from 'react-router';
 
+@observer
 class GamesInfo extends React.Component<any, any> {
     async componentDidMount() {
         await gamesStore.getGamesInfo();
@@ -17,12 +19,6 @@ class GamesInfo extends React.Component<any, any> {
             title: 'Title',
             dataIndex: 'Title',
             key: 'Title',
-        },
-        {
-            title: '图标',
-            dataIndex: 'IconUrl',
-            key: 'IconUrl',
-            render: (text: string) => <img style={{ width: '100px', objectFit: 'cover' }} src={text} />
         },
         {
             title: '背景图片',
@@ -49,20 +45,24 @@ class GamesInfo extends React.Component<any, any> {
                 <div style={{ display: 'flex' }}>
                     <Button type={'primary'} onClick={() => {
                         this.props.history.push({
-                            pathname: '/demo',
-                            query: {
-                                name: '两百斤'
-                            }
+                            pathname: `/listChange?id=${record['_id']}`
                         })
                     }}>修改</Button>
                     <Divider type="vertical" />
-                    <Button type={'primary'}>详情</Button>
+                    <Button type={'primary'} onClick={() => {
+                        this.props.history.push({
+                            pathname: `/GamesDetailList?id=${record['_id']}`
+                        })
+                    }}>详情</Button>
                 </div>
 
             )
         }
     ]
 
+    componentWillReceiveProps(props: any) {
+        console.log('componentWillReceivePropsÎ', props)
+    }
     render() {
         console.log(toJS(gamesStore.gamesList));
         const pagination = {
@@ -71,26 +71,41 @@ class GamesInfo extends React.Component<any, any> {
             current: gamesStore.condition.page + 1,
             showSizeChanger: true,
         }
+        if (!gamesStore.gamesList) {
+            return null
+        }
         return (
-            <Table
-                key="Title"
-                loading={gamesStore.loading}
-                columns={this.columns}
-                dataSource={gamesStore.gamesList}
-                pagination={pagination}
-                onChange={({ total, current, pageSize },
-                    filters) => {
-                    gamesStore.condition = {
-                        ...gamesStore.condition,
-                        pageSize: pageSize || 10,
-                        page: current || 0
-                    }
-                }}
-            />
+            <div>
+                <Card>
+                    <Button type="primary" onClick={() => {
+                        this.props.history.push({
+                            pathname: `/listChange`
+                        });
+                        this.props.history.go();
+                    }}>添加</Button>
+                </Card>
+                <Table
+                    key="Title"
+                    loading={gamesStore.loading}
+                    columns={this.columns}
+                    dataSource={gamesStore.gamesList}
+                    pagination={pagination}
+                    onChange={({ total, current, pageSize },
+                        filters) => {
+                        gamesStore.condition = {
+                            ...gamesStore.condition,
+                            pageSize: pageSize || 10,
+                            page: current || 0
+                        }
+                        gamesStore.getGamesInfo();
+                    }}
+                />
+            </div>
+
 
         );
     }
 }
 
 
-export default withRouter(GamesInfo)
+export default withRouter(GamesInfo) 

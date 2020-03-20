@@ -9,3 +9,11 @@ export async function judgeAccessToke() {
 
     return access_token
 }
+
+export async function changeStringToJson(data: string) {
+    return (new Function("return " + data))()
+}
+
+export async function judgeIsFromCloud(url: string) {
+    return url.indexOf('cloud://') >= 0
+}

@@ -24,9 +24,9 @@
     "experimentalDecorators": true,
     "allowJs": true,
     "strictPropertyInitialization": false,
-    "strict": true
+    "strict": false
   },
   "include": [
-    "src/*"
+    "src"
   ]
 }
