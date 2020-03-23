@@ -62,7 +62,6 @@ class GameDetailStore {
         } catch (error) {
 
         }
-
     }
 
     @action.bound

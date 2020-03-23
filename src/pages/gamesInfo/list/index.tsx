@@ -45,13 +45,15 @@ class GamesInfo extends React.Component<any, any> {
                 <div style={{ display: 'flex' }}>
                     <Button type={'primary'} onClick={() => {
                         this.props.history.push({
-                            pathname: `/listChange?id=${record['_id']}`
+                            pathname: '/listChange',
+                            search: `?id=${record['_id']}`
                         })
                     }}>修改</Button>
                     <Divider type="vertical" />
                     <Button type={'primary'} onClick={() => {
-                        this.props.history.push({
-                            pathname: `/GamesDetailList?id=${record['_id']}`
+                          this.props.history.push({
+                            pathname: '/GamesDetailList',
+                            search: `?id=${record['_id']}`
                         })
                     }}>详情</Button>
                 </div>
@@ -60,9 +62,6 @@ class GamesInfo extends React.Component<any, any> {
         }
     ]
 
-    componentWillReceiveProps(props: any) {
-        console.log('componentWillReceivePropsÎ', props)
-    }
     render() {
         console.log(toJS(gamesStore.gamesList));
         const pagination = {

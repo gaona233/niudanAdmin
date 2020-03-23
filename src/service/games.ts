@@ -62,7 +62,7 @@ export class GamesService extends BaseService {
 
     async getActivitySpeciesCollectionAll() {
         const url = `${Base_Url}?access_token=${this.access_token}`;
-        const query = `db.collection('ActivitySpeciesCollection').sort({Index:1}).limit(20).skip(${0}).get()`
+        const query = `db.collection('ActivitySpeciesCollection').limit(20).skip(${0}).get()`
         const data = await this.post(url, { env: Base_Env, query }).then(res => res);
         let list: any[] = [];
         (data.data.data as any).map(async (res: any) => {

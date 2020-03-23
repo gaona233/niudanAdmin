@@ -76,6 +76,7 @@ class DetailListChange extends React.Component<any, any> {
 		// this.props.history.push({
 		// 	pathname: `/gamesDetailList?id=${gamesStore.gameDetail.ActivityId}`
 		// })
+
 		this.props.history.go(-1);
 	}
 
@@ -84,10 +85,7 @@ class DetailListChange extends React.Component<any, any> {
 		if (!gamesStore.gameDetail || (gamesStore.changedId && !gamesStore.gameDetail.Title)) {
 			return null
 		}
-		console.log('+++++', {
-			...gamesStore.gameDetail,
-			Detail: BraftEditor.createEditorState(gamesStore.gameDetail.Detail)
-		});
+
 		return (
 			<div style={{ background: "#fff" }}>
 				<Form name="list_change" onFinish={this.handleSubmit} initialValues={{

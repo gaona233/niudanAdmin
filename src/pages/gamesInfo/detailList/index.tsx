@@ -22,7 +22,6 @@ class GamesDetailList extends React.Component<any, any> {
             ...gameDetailsStore.condition,
             id
         }
-        console.log('-----', id)
         await gameDetailsStore.getGamesDetailList();
     }
 
@@ -48,6 +47,10 @@ class GamesDetailList extends React.Component<any, any> {
             key: 'EndTime',
             render: (text: any) => moment(text.$date).format('YYYY-MM-DD HH:mm')
         }, {
+            title: '权重',
+            dataIndex: 'Index',
+            key: 'Index',
+        }, {
             title: '创建时间',
             dataIndex: 'CreateTime',
             render: (text: any) => moment(text.$date).format('YYYY-MM-DD HH:mm')
@@ -58,7 +61,8 @@ class GamesDetailList extends React.Component<any, any> {
                 <div style={{ display: 'flex' }}>
                     <Button type={'primary'} onClick={() => {
                         this.props.history.push({
-                            pathname: `/detailListChange?id=${gameDetailsStore.condition.id}&detailId=${record['_id']}`,
+                            pathname: '/detailListChange',
+                            search: `?id=${gameDetailsStore.condition.id}&detailId=${record['_id']}`
                         })
                     }}>修改</Button>
                     <Divider type="vertical" />
@@ -85,7 +89,8 @@ class GamesDetailList extends React.Component<any, any> {
                 <Card>
                     <Button type="primary" onClick={() => {
                         this.props.history.push({
-                            pathname: `/detailListChange?id=${gameDetailsStore.condition.id}`,
+                            pathname: '/detailListChange',
+                            search: `?id=${gameDetailsStore.condition.id}`
                         })
                     }}>添加</Button>
                     <Divider type="vertical" />

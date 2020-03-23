@@ -20,7 +20,7 @@ class LayOutComp extends React.Component<any, any> {
 
   render() {
     const pathName = window.location.pathname || '';
-    console.log('pathname', pathName)
+    console.log('pathname', pathName, this.props.children)
     return (
       <Layout className='body'>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>

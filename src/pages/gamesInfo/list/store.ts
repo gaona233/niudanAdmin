@@ -22,7 +22,6 @@ class GamesInfoStore {
         const { data, total } = await this.gamesService.getGames({ ...this.condition });
         let dataNew: Games[] = [];
         for (let i = 0; i < data.length; i++) {
-
             const source = await changeStringToJson(data[i]);
             source.key = source['_id'];
             const isCloud = await judgeIsFromCloud(source.BgUrl);
